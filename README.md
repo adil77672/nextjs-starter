@@ -28,6 +28,23 @@ No databases, external auth, or complex setup—just a clean starting point that
 - **TanStack Query (React Query)** - Powerful data synchronization
 - TypeScript, ESLint, Turbopack dev server
 
+## Team Rules & Contributing
+
+**📋 For Team Members**: See [`.github/TEAM_RULES.md`](.github/TEAM_RULES.md) for complete guidelines:
+
+- ✅ Commit message rules (Conventional Commits)
+- ✅ Branch naming conventions
+- ✅ Pull request requirements
+- ✅ Code quality standards
+- ✅ Daily workflow best practices
+
+**🤝 For Contributors**: See [CONTRIBUTING.md](CONTRIBUTING.md) for how to contribute:
+
+- How to fork and clone
+- Pull request process
+- Code standards
+- Issue reporting
+
 ## Getting Started
 
 ### Prerequisites
