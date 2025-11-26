@@ -658,6 +658,304 @@ fix bug            # Missing colon
 FEAT: new feature  # Wrong case
 ```
 
+### Commit Message Structure
+
+All commit messages must follow the **Conventional Commits** format:
+
+```
+<type>(<scope>): <subject>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+#### Type (Required)
+
+The type must be one of the following:
+
+| Type       | Description                                                | Example                                       |
+| ---------- | ---------------------------------------------------------- | --------------------------------------------- |
+| `feat`     | A new feature                                              | `feat: add user profile page`                 |
+| `fix`      | A bug fix                                                  | `fix: resolve sidebar overlap issue`          |
+| `docs`     | Documentation only changes                                 | `docs: update README with setup instructions` |
+| `style`    | Code style changes (formatting, missing semi-colons, etc.) | `style: format code with Prettier`            |
+| `refactor` | Code refactoring without bug fixes or features             | `refactor: reorganize authentication flow`    |
+| `perf`     | Performance improvements                                   | `perf: optimize image loading`                |
+| `test`     | Adding or updating tests                                   | `test: add unit tests for auth utils`         |
+| `chore`    | Changes to build process or auxiliary tools                | `chore: update dependencies`                  |
+| `ci`       | CI/CD configuration changes                                | `ci: update GitHub Actions workflow`          |
+| `build`    | Build system or external dependencies                      | `build: update Next.js to v16`                |
+| `revert`   | Revert a previous commit                                   | `revert: revert "feat: add new feature"`      |
+
+#### Scope (Optional)
+
+The scope specifies the area of the codebase affected:
+
+```bash
+feat(auth): add password reset flow
+fix(ui): resolve sidebar collapse issue
+refactor(api): reorganize user endpoints
+docs(readme): add installation instructions
+```
+
+Common scopes:
+
+- `auth` - Authentication related
+- `ui` - UI components
+- `api` - API routes
+- `config` - Configuration files
+- `deps` - Dependencies
+- `readme` - Documentation
+
+#### Subject (Required)
+
+- Use imperative mood ("add" not "added" or "adds")
+- First letter lowercase
+- No period at the end
+- Maximum 72 characters
+- Describe what the commit does, not why
+
+**Good examples**:
+
+```bash
+feat: add user authentication
+fix: resolve sidebar overlap issue
+refactor: update authentication flow
+```
+
+**Bad examples**:
+
+```bash
+feat: Added user authentication  # Wrong mood
+fix: Resolve sidebar overlap issue.  # Capital letter, period
+feat: add user authentication and also update the login page and fix the bug where users can't log in  # Too long
+```
+
+#### Body (Optional)
+
+Use the body to explain **what** and **why** vs. **how**:
+
+```bash
+feat(auth): add password reset flow
+
+Implement forgot password functionality with OTP verification.
+Users can now reset their password through email verification.
+
+Closes #123
+```
+
+#### Footer (Optional)
+
+Reference issues, breaking changes, etc.:
+
+```bash
+feat(api): add user endpoint
+
+BREAKING CHANGE: User endpoint now requires authentication token
+Closes #456
+Fixes #789
+```
+
+#### Examples
+
+**Simple commit**:
+
+```bash
+git commit -m "feat: add user profile page"
+```
+
+**Commit with scope**:
+
+```bash
+git commit -m "fix(ui): resolve sidebar overlap issue"
+```
+
+**Commit with body**:
+
+```bash
+git commit -m "feat(auth): add password reset flow
+
+Implement forgot password functionality with OTP verification.
+Users can now reset their password through email verification."
+```
+
+**Breaking change**:
+
+```bash
+git commit -m "feat(api): update authentication endpoint
+
+BREAKING CHANGE: Authentication endpoint now requires API key in headers"
+```
+
+## Branch Structure
+
+This project follows a **Git Flow**-inspired branching strategy for organized development.
+
+### Branch Types
+
+#### Main Branches
+
+- **`main`** (or `master`)
+  - Production-ready code
+  - Always deployable
+  - Protected branch (requires PR)
+  - Only merged from `develop` or hotfix branches
+
+- **`develop`**
+  - Integration branch for features
+  - Latest development changes
+  - Merged into `main` for releases
+
+#### Supporting Branches
+
+- **`feature/*`** - New features
+  - Branch from: `develop`
+  - Merge back to: `develop`
+  - Naming: `feature/user-authentication`, `feature/dashboard-stats`
+  - Delete after merge
+
+- **`bugfix/*`** - Bug fixes
+  - Branch from: `develop`
+  - Merge back to: `develop`
+  - Naming: `bugfix/sidebar-overlap`, `bugfix/login-error`
+  - Delete after merge
+
+- **`hotfix/*`** - Critical production fixes
+  - Branch from: `main`
+  - Merge back to: `main` and `develop`
+  - Naming: `hotfix/security-patch`, `hotfix/critical-bug`
+  - Delete after merge
+
+- **`release/*`** - Release preparation
+  - Branch from: `develop`
+  - Merge back to: `main` and `develop`
+  - Naming: `release/v1.0.0`, `release/v2.0.0`
+  - Delete after merge
+
+### Branch Naming Convention
+
+```
+<type>/<description>
+```
+
+**Examples**:
+
+```bash
+feature/user-authentication
+feature/dashboard-analytics
+bugfix/sidebar-overlap
+bugfix/login-validation-error
+hotfix/security-patch
+hotfix/critical-api-bug
+release/v1.0.0
+chore/update-dependencies
+refactor/auth-flow
+```
+
+### Branch Workflow
+
+#### Creating a Feature Branch
+
+```bash
+# Start from develop
+git checkout develop
+git pull origin develop
+
+# Create and switch to feature branch
+git checkout -b feature/user-profile
+
+# Make changes and commit
+git add .
+git commit -m "feat(profile): add user profile page"
+
+# Push to remote
+git push origin feature/user-profile
+```
+
+#### Creating a Bugfix Branch
+
+```bash
+# Start from develop
+git checkout develop
+git pull origin develop
+
+# Create bugfix branch
+git checkout -b bugfix/sidebar-overlap
+
+# Fix the issue
+git add .
+git commit -m "fix(ui): resolve sidebar overlap issue"
+
+# Push to remote
+git push origin bugfix/sidebar-overlap
+```
+
+#### Creating a Hotfix Branch
+
+```bash
+# Start from main
+git checkout main
+git pull origin main
+
+# Create hotfix branch
+git checkout -b hotfix/security-patch
+
+# Fix the critical issue
+git add .
+git commit -m "fix(security): patch authentication vulnerability"
+
+# Push to remote
+git push origin hotfix/security-patch
+```
+
+### Pull Request Workflow
+
+1. **Create Branch**: Create feature/bugfix/hotfix branch
+2. **Make Changes**: Implement changes with proper commits
+3. **Push Branch**: Push branch to remote repository
+4. **Create PR**: Open Pull Request on GitHub
+5. **Code Review**: Get team approval
+6. **Merge**: Merge into target branch (usually `develop` or `main`)
+7. **Delete Branch**: Delete branch after merge
+
+### Branch Protection Rules
+
+Recommended GitHub branch protection for `main`:
+
+- ✅ Require pull request reviews
+- ✅ Require status checks to pass (CI)
+- ✅ Require branches to be up to date
+- ✅ Require linear history
+- ✅ Include administrators
+- ✅ Restrict pushes to matching branches
+
+### Workflow Summary
+
+**Feature Development**:
+
+```
+develop → feature/user-auth → develop → main
+```
+
+**Bug Fix**:
+
+```
+develop → bugfix/login-error → develop → main
+```
+
+**Hotfix**:
+
+```
+main → hotfix/security-patch → main + develop
+```
+
+**Release**:
+
+```
+develop → release/v1.0.0 → main + develop
+```
+
 ### Workflow Summary
 
 **On every commit**:
