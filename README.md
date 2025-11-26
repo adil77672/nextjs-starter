@@ -1044,21 +1044,31 @@ To add collaborators who can push code:
 
 To ensure only you and approved collaborators can push to main branches:
 
+#### Quick Setup Guide
+
+**📖 Detailed instructions**: See [`.github/BRANCH_PROTECTION.md`](.github/BRANCH_PROTECTION.md) for step-by-step guide.
+
 #### Protect `main` Branch
 
-1. Go to **Settings** → **Branches**
-2. Click **Add branch protection rule**
-3. Set branch name pattern: `main`
-4. Enable:
+1. Go to your repository on GitHub
+2. Navigate to **Settings** → **Branches**
+3. Click **Add branch protection rule**
+4. Set branch name pattern: `main`
+5. Enable these settings:
    - ✅ **Require a pull request before merging**
-     - Require approvals: 1
-     - Dismiss stale pull request approvals
+     - Required approvals: `1`
+     - ✅ Dismiss stale pull request approvals
    - ✅ **Require status checks to pass before merging**
-     - Require branches to be up to date before merging
+     - ✅ Require branches to be up to date before merging
+     - Select required checks: `build`, `lint` (from CI workflow)
+   - ✅ **Require conversation resolution before merging**
    - ✅ **Require linear history**
-   - ✅ **Include administrators** (optional)
    - ✅ **Restrict pushes that create files**
-   - ✅ **Do not allow bypassing the above settings**
+   - ✅ **Include administrators** ⚠️ (Even you must follow rules!)
+
+6. Click **Create** to save
+
+**Result**: No one (including you) can push directly to `main`. All changes must go through Pull Requests.
 
 #### Protect `develop` Branch
 
