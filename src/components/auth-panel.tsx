@@ -8,7 +8,7 @@ type SessionState = {
 };
 
 export function AuthPanel() {
-  const [email, setEmail] = useState("demo@clay.dev");
+  const [email, setEmail] = useState("");
   const [session, setSession] = useState<SessionState>({ authenticated: false });
   const [status, setStatus] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();

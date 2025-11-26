@@ -34,7 +34,12 @@ No databases, external auth, or complex setup—just a clean starting point that
 
 ```bash
 # Clone the repository
-git clone https://github.com/ixartz/Next-js-Boilerplate-main.git my-app
+# Using HTTPS
+git clone https://github.com/adil77672/nextjs-starter.git my-app
+
+# Or using SSH
+git clone git@github.com:adil77672/nextjs-starter.git my-app
+
 cd my-app
 
 # Install dependencies
