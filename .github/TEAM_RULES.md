@@ -1,6 +1,28 @@
 # Team Rules & Guidelines
 
-This document outlines the rules and best practices for contributing to this project. All team members must follow these guidelines.
+This document outlines the standard rules and best practices for all our projects. All team members must follow these guidelines across all repositories.
+
+## ⚠️ Important: Branch Creation
+
+When creating a new branch, **always start from the correct base branch**:
+
+- **Features & Bugfixes**: Start from `develop` (or `main` if no develop exists)
+- **Hotfixes**: Start from `main`
+
+**Wrong way** ❌:
+
+```bash
+git checkout feature/old-branch
+git checkout -b feature/new-branch  # ❌ Creates from old branch!
+```
+
+**Correct way** ✅:
+
+```bash
+git checkout develop
+git pull origin develop
+git checkout -b feature/new-branch  # ✅ Creates from develop!
+```
 
 ## 📝 Commit Rules
 
@@ -94,13 +116,34 @@ All branches **MUST** follow this format:
 
 ### Branch Rules
 
-1. ✅ **Always branch from `develop`** (or `main` for hotfixes)
+1. ✅ **Always branch from the correct base branch**:
+
+   **For features and bugfixes**: Branch from `develop` (or `main` if no develop branch exists)
 
    ```bash
+   # Step 1: Switch to develop branch (THIS IS THE ORIGIN/STARTING POINT)
    git checkout develop
+
+   # Step 2: Pull latest changes from remote
    git pull origin develop
+
+   # Step 3: Create and switch to your new feature branch FROM develop
    git checkout -b feature/your-feature
    ```
+
+   **For hotfixes**: Branch from `main`
+
+   ```bash
+   git checkout main
+   git pull origin main
+   git checkout -b hotfix/security-patch
+   ```
+
+   **⚠️ Important**:
+   - The `-b` flag creates a new branch **FROM your current branch**
+   - If you're on `develop`, the new branch will be created **FROM develop**
+   - If you're on `feature/old-branch`, the new branch will be created **FROM that old branch** (WRONG!)
+   - Always switch to `develop` (or `main`) first!
 
 2. ✅ **Use descriptive names**
    - Good: `feature/user-profile-page`
@@ -227,31 +270,29 @@ All branches **MUST** follow this format:
 
 ### Code Style
 
-1. ✅ **Follow ESLint rules** (configured in `eslint.config.mjs`)
-2. ✅ **Use Prettier formatting** (configured in `.prettierrc.json`)
-3. ✅ **Use TypeScript** - No `any` types without justification
+1. ✅ **Follow project's linting rules** (ESLint, etc.)
+2. ✅ **Use code formatter** (Prettier, etc.) - format on save
+3. ✅ **Use TypeScript** (if project uses it) - No `any` types without justification
 4. ✅ **Write meaningful variable/function names**
 5. ✅ **Add comments for complex logic**
 6. ✅ **Keep functions small and focused**
+7. ✅ **Follow framework conventions** (React, Vue, Angular, etc.)
 
 ### File Organization
 
 1. ✅ **Follow project structure**:
-   - Components in `src/components/`
-   - Pages in `src/app/`
-   - API routes in `src/app/api/`
-   - Utilities in `src/lib/`
+   - Organize files logically by feature/domain
+   - Keep related files together
+   - Use consistent naming conventions
+   - Follow framework-specific conventions (Next.js, React, Vue, etc.)
+   - Check project's README for structure guidelines
 
 2. ✅ **Use proper imports**:
-
-   ```typescript
-   // Good
-   import { useSession } from "@/lib/api/auth"
-   import { Button } from "@/components/ui/button"
-
-   // Bad
-   import { useSession } from "../../../lib/api/auth"
-   ```
+   - Use absolute imports when configured
+   - Avoid deep relative paths (`../../../`)
+   - Group imports: external → internal → relative
+   - Use path aliases when available
+   - Follow project's import conventions
 
 ## 🚫 What NOT to Do
 
@@ -375,20 +416,39 @@ docs/     - Documentation
 ### Common Commands
 
 ```bash
-# Create and switch to branch
+# Step 1: Switch to base branch (develop or main)
+git checkout develop
+
+# Step 2: Pull latest changes
+git pull origin develop
+
+# Step 3: Create and switch to new branch FROM develop
 git checkout -b feature/your-feature
 
-# Commit with proper format
+# Step 4: Make changes and commit
+git add .
 git commit -m "feat: add user profile"
 
-# Push branch
+# Step 5: Push branch to remote
 git push origin feature/your-feature
 
-# Sync with develop
+# Step 6: Sync your branch with latest develop (if needed)
 git checkout develop
 git pull origin develop
 git checkout feature/your-feature
-git rebase develop
+git rebase develop  # or git merge develop
+```
+
+**Key Point**: `git checkout -b feature/your-feature` creates a branch **FROM your current branch**. Always be on `develop` (or `main`) before creating a new branch!
+
+### Project-Specific Commands
+
+Each project may have different commands. Check the project's `package.json` for available scripts:
+
+- `npm run` or `yarn` or `pnpm run` - List all available scripts
+- Common scripts: `dev`, `build`, `test`, `lint`, `format`
+- Always check project README for specific commands
+
 ```
 
 ## 🆘 Need Help?
@@ -401,3 +461,4 @@ git rebase develop
 ---
 
 **Remember**: These rules ensure code quality, maintainability, and smooth collaboration. Following them makes everyone's life easier! 🚀
+```
