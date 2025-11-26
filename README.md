@@ -1000,6 +1000,157 @@ yarn start
 
 Works on Vercel, Netlify, Render, Railway, etc. Optionally set `NEXT_PUBLIC_APP_URL` so server components can build absolute URLs.
 
+## Repository Access & Permissions
+
+### Public Repository Access
+
+This repository is **public**, which means:
+
+- ✅ **Anyone can clone** the repository
+- ✅ **Anyone can view** the code
+- ✅ **Anyone can fork** the repository
+- ❌ **Only you (owner) and collaborators can push** code
+- ❌ **Only you (owner) and collaborators can create branches** (if protected)
+
+### Access Levels
+
+#### Public Access (Read-Only)
+
+- Clone: `git clone https://github.com/adil77672/nextjs-starter.git`
+- View code, issues, pull requests
+- Fork the repository
+- Submit pull requests (if enabled)
+
+#### Collaborator Access (Write)
+
+- Push code to branches
+- Create new branches
+- Merge pull requests (if granted permission)
+- Manage issues and pull requests
+
+### Managing Collaborators
+
+To add collaborators who can push code:
+
+1. Go to **Settings** → **Collaborators and teams**
+2. Click **Add people**
+3. Enter GitHub username or email
+4. Choose permission level:
+   - **Write** - Can push to branches (recommended for developers)
+   - **Maintain** - Can manage repository settings
+   - **Admin** - Full repository access
+
+### Branch Protection
+
+To ensure only you and approved collaborators can push to main branches:
+
+#### Protect `main` Branch
+
+1. Go to **Settings** → **Branches**
+2. Click **Add branch protection rule**
+3. Set branch name pattern: `main`
+4. Enable:
+   - ✅ **Require a pull request before merging**
+     - Require approvals: 1
+     - Dismiss stale pull request approvals
+   - ✅ **Require status checks to pass before merging**
+     - Require branches to be up to date before merging
+   - ✅ **Require linear history**
+   - ✅ **Include administrators** (optional)
+   - ✅ **Restrict pushes that create files**
+   - ✅ **Do not allow bypassing the above settings**
+
+#### Protect `develop` Branch
+
+Similar setup for `develop` branch (optional, but recommended):
+
+- Require pull request reviews
+- Require status checks
+- Allow force pushes: ❌ (disabled)
+
+### Fork & Pull Request Workflow
+
+For public contributors who want to contribute:
+
+1. **Fork the repository**
+
+   ```bash
+   # On GitHub, click "Fork" button
+   ```
+
+2. **Clone your fork**
+
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/nextjs-starter.git
+   cd nextjs-starter
+   ```
+
+3. **Add upstream remote**
+
+   ```bash
+   git remote add upstream https://github.com/adil77672/nextjs-starter.git
+   ```
+
+4. **Create feature branch**
+
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+
+5. **Make changes and commit**
+
+   ```bash
+   git add .
+   git commit -m "feat: add your feature"
+   git push origin feature/your-feature
+   ```
+
+6. **Create Pull Request**
+   - Go to your fork on GitHub
+   - Click "New Pull Request"
+   - Select your branch
+   - Fill out PR description
+   - Submit for review
+
+### Permission Summary
+
+| Action               | Public Users | Collaborators | Owner |
+| -------------------- | ------------ | ------------- | ----- |
+| Clone repository     | ✅           | ✅            | ✅    |
+| View code            | ✅           | ✅            | ✅    |
+| Fork repository      | ✅           | ✅            | ✅    |
+| Create branches      | ❌\*         | ✅            | ✅    |
+| Push to branches     | ❌           | ✅            | ✅    |
+| Create Pull Requests | ✅           | ✅            | ✅    |
+| Merge Pull Requests  | ❌           | ✅\*\*        | ✅    |
+| Manage settings      | ❌           | ❌            | ✅    |
+| Delete repository    | ❌           | ❌            | ✅    |
+
+\* Can create branches in their fork  
+\*\* If granted merge permission
+
+### Security Best Practices
+
+1. **Never commit secrets** - Use environment variables
+2. **Use `.env.example`** - Document required environment variables
+3. **Enable branch protection** - Prevent direct pushes to main
+4. **Require PR reviews** - Code review before merging
+5. **Use GitHub Secrets** - For CI/CD sensitive data
+6. **Regular dependency updates** - Keep dependencies secure
+
+### Environment Variables
+
+Create a `.env.example` file (already in `.gitignore`):
+
+```bash
+# .env.example
+NEXT_PUBLIC_APP_URL=http://localhost:3003
+DATABASE_URL=your_database_url
+API_KEY=your_api_key
+```
+
+**Never commit** `.env` or `.env.local` files!
+
 ## GitHub Actions
 
 The project includes pre-configured GitHub Actions workflows:
