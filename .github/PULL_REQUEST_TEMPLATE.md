@@ -1,31 +1,69 @@
-## Summary
-<!-- Briefly describe what this PR delivers -->
-- [ ] Feature:
-- [ ] Fix:
-- [ ] Refactor / chore:
+## Description
 
-## Changes
-<!-- Call out the key code or config changes -->
-- Bullet list of important updates
-- Mention new routes/components/hooks
-- Note any env vars or dependencies
+<!-- Provide a brief description of your changes -->
+
+## Type of Change
+
+<!-- Check all that apply -->
+
+- [ ] 🐛 Bug fix (non-breaking change which fixes an issue)
+- [ ] ✨ New feature (non-breaking change which adds functionality)
+- [ ] 💥 Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] 📝 Documentation update
+- [ ] 🎨 Style/formatting changes
+- [ ] ♻️ Code refactoring
+- [ ] ⚡ Performance improvement
+- [ ] ✅ Test addition/update
+- [ ] 🔧 Build/config changes
+
+## Related Issues
+
+<!-- Link related issues here -->
+
+Closes #
+Fixes #
+Related to #
+
+## Changes Made
+
+<!-- List the main changes -->
+
+-
+-
+-
 
 ## Testing
-<!-- Mark all that apply -->
-- [ ] `yarn test`
-- [ ] `yarn lint`
-- [ ] `yarn dev` smoke test
-- [ ] Manual QA notes:
 
-## Screenshots / Recordings
-<!-- Optional: drop UI captures or terminal snippets -->
+<!-- Describe the tests you ran -->
+
+- [ ] Tests pass locally (`yarn lint` and `yarn format:check`)
+- [ ] Manual testing completed
+- [ ] Tested on different browsers (if applicable)
+- [ ] Tested responsive design (if applicable)
+
+## Screenshots (if applicable)
+
+<!-- Add screenshots to help explain your changes -->
 
 ## Checklist
-- [ ] Code follows project conventions (TypeScript, ESLint, formatting)
-- [ ] Docs / README updated if needed
-- [ ] Added tests or covered by existing suite
-- [ ] No new warnings/errors in console or build
 
-## Extra Notes
-<!-- Anything reviewers should be aware of -->
+<!-- Ensure all items are completed -->
 
+- [ ] My code follows the project's style guidelines
+- [ ] I have performed a self-review of my code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have updated the documentation accordingly
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] New and existing unit tests pass locally
+- [ ] Any dependent changes have been merged and published
+
+## Additional Notes
+
+<!-- Any additional information, context, or notes for reviewers -->
+
+---
+
+**Commit Format**: ✅ Follows Conventional Commits  
+**Branch Name**: ✅ Follows naming convention  
+**Code Quality**: ✅ Passes linting and formatting
